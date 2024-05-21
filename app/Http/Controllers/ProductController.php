@@ -12,15 +12,15 @@ class ProductController extends Controller
     //index method
     public function index(Request $request)
     {
-        $products = Product::when($request->search, function ($query) use ($request) {
-            $query->where('name', 'LIKE', "%{$request->search}%")
-                ->orWhere('description', 'LIKE', "%{$request->search}%")
-                ->orWhere('price', 'LIKE', "%{$request->search}%")
-                ->orWhere('stock', 'LIKE', "%{$request->search}%")
-                ->orWhere('category_id', 'LIKE', "%{$request->search}%")
-                ->orWhere('status', 'LIKE', "%{$request->search}%")
-                ->orWhere('criteria', 'LIKE', "%{$request->search}%")
-                ->orWhere('favorite', 'LIKE', "%{$request->search}%");
+        $products = Product::when($request->keyword, function ($query) use ($request) {
+            $query->where('name', 'LIKE', "%{$request->keyword}%")
+                ->orWhere('description', 'LIKE', "%{$request->keyword}%")
+                ->orWhere('price', 'LIKE', "%{$request->keyword}%")
+                ->orWhere('stock', 'LIKE', "%{$request->keyword}%")
+                ->orWhere('category_id', 'LIKE', "%{$request->keyword}%")
+                ->orWhere('status', 'LIKE', "%{$request->keyword}%")
+                ->orWhere('criteria', 'LIKE', "%{$request->keyword}%")
+                ->orWhere('favorite', 'LIKE', "%{$request->keyword}%");
         })->orderBy('id','desc')->paginate(10);
         return view('pages.products.index', compact('products'));
     }

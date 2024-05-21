@@ -1,0 +1,20 @@
+<?php
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\Api\ProductController;
+
+Route::get('/user', function (Request $request) {
+    return $request->user();
+})->middleware('auth:sanctum');
+
+// login Auth API
+Route::post('/login', [AuthController::class, 'login']);
+// logout Auth API
+Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
+//product
+Route::apiResource('/api-products', ProductController::class)->middleware('auth:sanctum');
+//category
+Route::apiResource('/api-categories', CategoryController::class)->middleware('auth:sanctum');

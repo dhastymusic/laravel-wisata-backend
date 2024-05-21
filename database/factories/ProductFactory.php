@@ -24,7 +24,7 @@ class ProductFactory extends Factory
             'image' => $this->faker->imageUrl(640, 480, 'places', true),
             'category_id' => $this->faker->numberBetween(1, 2),
             'status' => $this->faker->randomElement(['draft', 'published', 'archived']),
-            'criteria' => $this->faker->randomElement(['perorangan', 'rombongan', 'keluarga','anak', 'terusan']),
+            'criteria' => $this->faker->randomElement(['perorangan', 'rombongan']),
             'favorite' => $this->faker->boolean,
         ];
     }
